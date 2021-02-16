@@ -17,13 +17,15 @@
   </div>
 
 
-  <div class="field">
+  <div class="field" data-controller="range">
     <%= form.label :range %>
     <!-- <#%= form.select :range, options_for_select(["1-10", "11-20", "21-30"]), {}, { class: 'form-control' } %> -->
-    <%= form.select :range, options_for_select(["1-10", "11-20", "21-30"], range_string(form.object)),  {class: 'form-control'} %>
+    <%= select_tag nil, options_for_select(range_options, range_string(form.object)),  class: 'form-control', data: { action: "change->range#change" } %>
+    <%= form.hidden_field :minimum, class: 'form-control', data: { target: "range.minimum"} %>
+    <%= form.hidden_field :maximum, class: 'form-control', data: { target: "range.maximum"} %>
   </div>
 
-
+<!-- 
   <div class="field">
     <%= form.label :minimum %>
     <%= form.number_field :minimum %>
@@ -32,7 +34,7 @@
   <div class="field">
     <%= form.label :maximum %>
     <%= form.number_field :maximum %>
-  </div>
+  </div> -->
 
   <div class="actions">
     <%= form.submit %>

@@ -1,5 +1,5 @@
 class PlansController < ApplicationController
-  before_action :set_plan, only: %i[ show edit update destroy ]
+  before_action :set_plan, only: %i[show edit update destroy]
 
   # GET /plans or /plans.json
   def index
@@ -7,8 +7,7 @@ class PlansController < ApplicationController
   end
 
   # GET /plans/1 or /plans/1.json
-  def show
-  end
+  def show; end
 
   # GET /plans/new
   def new
@@ -16,8 +15,7 @@ class PlansController < ApplicationController
   end
 
   # GET /plans/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /plans or /plans.json
   def create
@@ -25,7 +23,7 @@ class PlansController < ApplicationController
 
     respond_to do |format|
       if @plan.save
-        format.html { redirect_to @plan, notice: "Plan was successfully created." }
+        format.html { redirect_to @plan, notice: 'Plan was successfully created.' }
         format.json { render :show, status: :created, location: @plan }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +36,7 @@ class PlansController < ApplicationController
   def update
     respond_to do |format|
       if @plan.update(plan_params)
-        format.html { redirect_to @plan, notice: "Plan was successfully updated." }
+        format.html { redirect_to @plan, notice: 'Plan was successfully updated.' }
         format.json { render :show, status: :ok, location: @plan }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,19 +49,20 @@ class PlansController < ApplicationController
   def destroy
     @plan.destroy
     respond_to do |format|
-      format.html { redirect_to plans_url, notice: "Plan was successfully destroyed." }
+      format.html { redirect_to plans_url, notice: 'Plan was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_plan
-      @plan = Plan.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def plan_params
-      params.require(:plan).permit(:title, :minimum, :maximum, :range)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_plan
+    @plan = Plan.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def plan_params
+    params.require(:plan).permit(:title, :minimum, :maximum, :range)
+  end
 end
